@@ -2,8 +2,6 @@
 
 date_default_timezone_set("CET");
 
-use function PHPSTORM_META\type;
-
 class Product
 {
     private $id, $name, $photos = [], $price, $description, $quantity, $createdAt,
