@@ -440,6 +440,34 @@ class Clothing extends Product
 
         return db_execute($query2, $params2);
     }
+
+    function findAll()
+    {
+        $query = "SELECT * FROM product 
+        LEFT JOIN clothing on product.id = clothing.product_id
+        WHERE category_id = 3";
+        $data =  db_select($query);
+
+        $my_electronics = [];
+        foreach ($data as $e) {
+            $my_electronics[] = new Clothing(
+                $e["name"],
+                $e["photos"],
+                $e["price"],
+                $e["description"],
+                $e["quantity"],
+                $e["category_id"],
+                $e["createdAt"],
+                $e["updatedAt"],
+                $e["size"],
+                $e["color"],
+                $e["type"],
+                $e["material_fee"]
+            );
+        }
+
+        return $my_electronics;
+    }
 }
 
 class Electronic extends Product
@@ -514,6 +542,32 @@ class Electronic extends Product
         ];
 
         return db_execute($query2, $params2);
+    }
+
+    function findAll()
+    {
+        $query = "SELECT * FROM product 
+        LEFT JOIN electronic on product.id = electronic.product_id
+        WHERE category_id = 2";
+        $data = db_select($query);
+
+        $my_electronics = [];
+        foreach ($data as $e) {
+            $my_electronics[] = new Electronic(
+                $e["name"],
+                $e["photos"],
+                $e["price"],
+                $e["description"],
+                $e["quantity"],
+                $e["category_id"],
+                $e["createdAt"],
+                $e["updatedAt"],
+                $e["brand"],
+                $e["warant_fee"]
+            );
+        }
+
+        return $my_electronics;
     }
 }
 
